@@ -80,7 +80,6 @@ cantril %>%
             colors = "YlGn") %>% 
   colorbar(title = NULL)
 
-cantril
 ```
 
 ## 📈 Chart
@@ -92,12 +91,13 @@ cantril_chart <-
   cantril %>% 
   filter(Year >= 2010) %>%
  # select(Happiness)
-  filter(Country %in% c("Norway", "Australia", "India", "Brazil", "Ghana", "South Africa")) %>% 
+  filter(Country %in% c("Norway", "Australia", "India", "Brazil", "Nigeria", "South Africa")) %>% 
   #filter(Year == 2010:2022) %>% 
   ggplot(aes(x = Year, y = Happiness, color = Country)) +
   geom_line() +
+  geom_point() +
   theme(legend.position = "none") +
-  scale_x_continuous() +
+  scale_x_continuous(breaks = seq(2010, 2022, by = 2)) +
   scale_y_continuous() +
   labs(x = NULL,
        y = NULL, 
@@ -106,7 +106,6 @@ cantril_chart <-
 
 ggplotly(cantril_chart, width = 940)
 
-cantril_chart
 ```
 
 ## Advanced (Optional) 📈
@@ -149,7 +148,7 @@ bscols(
 ```{=html}
 <script>
 function filter_default() {
-  var default_countries = ["Norway", "Australia", "India", "Ghana", "South Africa", "Brazil"]; // Set default countries here
+  var default_countries = ["Norway", "Australia", "India", "Nigeria", "South Africa", "Brazil"]; // Set default countries here
   document.getElementById("country_filter").getElementsByClassName("selectized")[0].selectize.setValue(default_countries, false);
 }
 window.onload = filter_default;
